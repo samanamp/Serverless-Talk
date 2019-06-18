@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <title>Serverless Assessment Form</title>
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" crossorigin="anonymous"></script>
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/floating-labels/floating-labels.css" rel="stylesheet">
+  </head>
+  <body>
+    <form class="form-signin">
+  <div class="text-center mb-4">
+    <img class="mb-4" src="https://secure.meetupstatic.com/photos/event/e/5/7/c/600_446758748.jpeg" alt="" width="161" height="72">
+    <p style="font-family: 'Oswald', sans-serif; font-size: 35px;">The Future is Serverless</p>
+    <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 30px;">Saman A. Pour</p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="inputjobtitle" class="form-control" placeholder="Job Title" autofocus>
+    <label for="inputjobtitle">Job Title</label>
+  </div>
+
+
+    <div class="form-label-group">
+    <div><label>For how many years have you been employed as a developer (if applicable)?</label></div>
+    <select class="browser-default custom-select" id="experience">
+      <option selected>Select ...</option>
+      <option value="1"> < 1 year </option>
+      <option value="2"> 1-5 years</option>
+      <option value="3"> 6-10 years</option>
+      <option value="4"> 10+ years</option>
+    </select>
+  </div>
+
+    <div class="form-label-group">
+      <div><label>The content was applicable to (select as many as applicable)...</label></div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="option1">
+        <label class="custom-control-label" for="option1">My current job</label>
+      </div>
+
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="option2">
+        <label class="custom-control-label" for="option2">A job I would like to pursue</label>
+      </div>
+
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="option3">
+        <label class="custom-control-label" for="option3">A side project I’m working on</label>
+      </div>
+
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="option4">
+        <label class="custom-control-label" for="option4">My general interests</label>
+      </div>
+    </div>
+
+
+  <div class="form-label-group">
+    <div><label>The difficulty level and pace of the Lunch & Learn was appropriate:</label></div>
+    <span class="font-weight-bold blue-text mr-2 mt-1">Disagree</span>
+    <input class="align-middle" id="difficultylevel" type="range" value="" data-slider-min="0" data-slider-max="5" data-slider-step="0.5"/>
+    <span class="font-weight-bold blue-text mr-2 mt-1"> Agree</span>
+  </div>
+
+  <div class="form-label-group">
+    <div><label>The Lunch & Learn was interesting and sparked my curiosity on the subject matter:</label></div>
+    <span class="font-weight-bold blue-text mr-2 mt-1">Disagree</span>
+    <input class="align-middle" id="interestinglevel" type="range" value="" data-slider-min="0" data-slider-max="5" data-slider-step="0.5"/>
+    <span class="font-weight-bold blue-text mr-2 mt-1"> Agree</span>
+  </div>
+
+
+  <div class="form-label-group align-center">
+    <div><label>How would you rate the instructor’s level of expertise on the subject matter?</label></div>
+    <span class="font-weight-bold blue-text mr-2 mt-1">Novice</span>
+    <input class="align-middle" id="instructorknowledgelevel" type="range" value="" data-slider-min="0" data-slider-max="5" data-slider-step="0.5"/>
+    <span class="font-weight-bold blue-text mr-2 mt-1"> Expert</span>
+  </div>
+
+  <div class="form-label-group align-center">
+    <div><label>Any additional feedback/comments for the instructor?</label></div>
+    <textarea class="form-control" id="instructorfeedback" rows="3" placeholder="We love your feedback"></textarea>
+  </div>
+
+  <div class="form-label-group align-center">
+    <div><label>What was the most valuable part of the Lunch&Learn? Least valuable?</label></div>
+    <textarea class="form-control" id="valuablepartfeedback" rows="3" placeholder="Please give us one"></textarea>
+  </div>
+
+  <div class="form-label-group align-center">
+    <div><label>What topic(s) would you like to hear (more) about in the future?</label></div>
+    <textarea class="form-control" id="topicsfeedback" rows="3" placeholder="Any topic? More serverless?"></textarea>
+  </div>
+
+  <div><label>Leave your email here if you are interested in receiving updates on other Devhub activities and events:</label></div>
+  <div class="form-label-group align-center">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address">
+    <label for="inputEmail">Email address</label>
+  </div>
+
+  </div>
+  <script>
+    $(document).ready(function(){
+      console.log("Hi!!")
+      console.log("123!!")
+      $("form").submit(function(e){
+        e.preventDefault();
+        console.log("clicked!!!")
+        console.log($("#inputjobtitle").val())
+        console.log($("#experience").val())
+        console.log($("#option1").prop('checked'))
+        console.log($("#option2").prop('checked'))
+        console.log($("#option3").prop('checked'))
+        console.log($("#option4").prop('checked'))
+        console.log($("#difficultylevel").val())
+        console.log($("#interestinglevel").val())
+        console.log($("#instructorknowledgelevel").val())
+        console.log($("#instructorfeedback").val())
+        console.log($("#valuablepartfeedback").val())
+        console.log($("#topicsfeedback").val())
+        console.log($("#inputEmail").val())
+        // buidling up data
+        formdata = {
+        "attendee_job_title": $("#inputjobtitle").val(),
+        "attendee_experience_level": $("#experience").val(),
+        "content_for_current_job": $("#option1").prop('checked'),
+        "content_for_pursue": $("#option2").prop('checked'),
+        "content_for_side_project": $("#option3").prop('checked'),
+        "content_for_interest": $("#option4").prop('checked'),
+        "content_difficulty_level": $("#difficultylevel").val(),
+        "content_interesting_level": $("#interestinglevel").val(),
+        "instructor_knowledge": $("#instructorknowledgelevel").val(),
+        "instructor_feedback": $("#instructorfeedback").val(),
+        "valuable_part_feedback": $("#valuablepartfeedback").val(),
+        "topics_of_interest_feedback": $("#topicsfeedback").val(),
+        "attendee_email": $("#inputEmail").val()
+      }
+      console.log(formdata)
+        // axios.get('http://localhost:7071/api/index')
+        //   .then(function (response) {
+        //     console.log(response);
+        //   })
+        //   .catch(function (error) {
+        //     console.log(error);
+        //   });
+        $("button").attr("disabled", true);
+        $("button").text("Sending data ...");
+        $("button").css('background-color', 'orange');
+        var jqxhr = $.post( "/api/save", JSON.stringify(formdata), function(data) {
+          console.log( "success" );
+          console.log(data)
+          $("button").attr("disabled", true);
+          $("button").text("Thank you");
+          $("button").css('background-color', 'green');
+        });
+
+
+      });
+    });
+  </script>
+
+  <button class="btn btn-lg btn-primary btn-block">Submit</button>
+</form>
+</body>
+</html>
